@@ -13,15 +13,20 @@
             font-family: 'Oxanium', sans-serif; /* Oxanium font family */
             padding: 20px; /* Add padding for better readability */
             margin: 0; /* Remove default margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         /* Center text and set background color */
         .center-text {
             text-align: center;
-            background-color: #4B5563; /* Dark blue-gray background color */
+            background-color: rgba(75, 85, 99, 0.8); /* Semi-transparent background color */
             padding: 20px; /* Add padding for better readability */
             border-radius: 10px; /* Rounded corners */
             margin-bottom: 20px; /* Add space between paragraphs */
+            max-width: 600px; /* Limit the width of the center content */
         }
 
         /* Style for links */
@@ -48,6 +53,19 @@
             width: 150px; /* Set image width */
             height: auto; /* Maintain aspect ratio */
             border-radius: 50%; /* Rounded image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow to the image */
+        }
+
+        /* Background effect */
+        body:before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: -1;
         }
     </style>
     <!-- Link to Oxanium font -->
@@ -61,6 +79,23 @@
             <h2>This website is useful to get a summary of the provided info.</h2>
             <h3>To start, <a href="{{url_for('Summarize')}}">Click here</a></h3>
             <img class="question-image" src="{{ url_for('static', filename='smiley.png') }}" alt="Image">
+        </div>
+
+        <div class="center-text">
+            <h2>Additional Information</h2>
+            <p>This webpage provides a simple interface to summarize text based on the information provided. It uses natural language processing techniques to generate a concise summary.</p>
+            <p>Features:</p>
+            
+                Summarize lengthy text into key points.<br>
+                Easy to use interface for entering text.<br>
+                Click the link above to get started!
+            </ul>
+        </div>
+
+        <div class="center-text">
+            <h2>About</h2>
+            <p>This webpage is designed as a demonstration of Flask web applications and natural language processing techniques. It's built to showcase how to summarize text using Python's libraries and present the results in a user-friendly manner.</p>
+            <p>Explore the features and enjoy summarizing text effortlessly!</p>
         </div>
     </div>
 </body>
