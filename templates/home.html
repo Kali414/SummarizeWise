@@ -45,7 +45,8 @@
         .question-image {
             display: block;
             margin: 20px auto; /* Center the image */
-            max-width: 100px; /* Limit image width */
+            width: 150px; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 50%; /* Rounded image */
         }
     </style>
@@ -59,7 +60,7 @@
             <h1>Welcome to this amazing webpage.</h1>
             <h2>This website is useful to get a summary of the provided info.</h2>
             <h3>To start, <a href="{{url_for('Summarize')}}">Click here</a></h3>
-            <img src="{{ url_for('static', filename='3d031c69a1b57d7bed454169e9d0f009.jpg') }}" alt="Image">
+            <img class="question-image" src="{{ url_for('static', filename='smiley.png') }}" alt="Image">
         </div>
     </div>
 </body>
