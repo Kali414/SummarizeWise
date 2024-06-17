@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* CSS for dark theme */
+        body {
+            background-color: #1F2937; /* Dark blue-gray background color */
+            color: #FFFFFF; /* White text color */
+            font-family: 'Oxanium', sans-serif; /* Oxanium font family */
+            padding: 20px; /* Add padding for better readability */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Center text and set background color */
+        .center-text {
+            text-align: center;
+            background-color: #4B5563; /* Dark blue-gray background color */
+            padding: 20px; /* Add padding for better readability */
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px; /* Add space between paragraphs */
+        }
+
+        /* Style for links */
+        a {
+            color: #22C55E; /* Green link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        /* Heading styles */
+        h1, h2, h3 {
+            text-align: center; /* Center align headings */
+            margin-bottom: 10px; /* Add space between headings and paragraphs */
+        }
+
+        /* Adjust padding for paragraphs */
+        p {
+            padding: 10px; /* Add padding for paragraphs */
+        }
+
+        /* Style for image */
+        .question-image {
+            display: block;
+            margin: 20px auto; /* Center the image */
+            max-width: 100px; /* Limit image width */
+            border-radius: 50%; /* Rounded image */
+        }
+    </style>
+    <!-- Link to Oxanium font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <div class="center-text">
+            <h1>Welcome to this amazing webpage.</h1>
+            <h2>This website is useful to get a summary of the provided info.</h2>
+            <h3>To start, <a href="{{url_for('Summarize')}}">Click here</a></h3>
+            <img src="{{ url_for('static', filename='3d031c69a1b57d7bed454169e9d0f009.jpg') }}" alt="Image">
+        </div>
+    </div>
+</body>
+
+</html>
