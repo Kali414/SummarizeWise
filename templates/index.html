@@ -2,167 +2,105 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Summarization</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="/static/css/jquery-ui.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles */
-        body {
-            background-color: #1F2937; /* Dark blue-gray background color */
-            color: #FFFFFF; /* White text color */
-            font-family: 'Inter', sans-serif; /* Inter font family */
-            padding: 20px; /* Add padding for better readability */
-            margin: 0; /* Remove default margin */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SummarizeWise</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+    }
 
-        header {
-            background-color: #004A56; /* Header background color */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px 20px;
-            z-index: 1000;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
+    .navbar-white {
+      background-color: #ffffff;
+      color: #0f172a;
+    }
 
-        section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 80px; /* Adjust margin to avoid header overlap */
-        }
+    .navbar-white a {
+      color: #0f172a;
+      transition: color 0.2s ease;
+    }
 
-        .form-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-section {
-            background-color: rgba(75, 85, 99, 0.8); /* Semi-transparent background color */
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .form-section h3 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .form-section label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-section input[type="range"] {
-            width: 80%;
-            margin-left: 10px;
-        }
-
-        .form-section button {
-            margin-top: 10px;
-        }
-
-        .result-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .result-section {
-            background-color: rgba(75, 85, 99, 0.8); /* Semi-transparent background color */
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .result-section textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #004A56;
-            color: white;
-            border: 2px solid #22C55E;
-            border-radius: 8px;
-        }
-
-        .result-section button {
-            margin-top: 10px;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    .navbar-white a:hover {
+      color: #22c55e;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-gray-900 text-white font-sans">
 
-    <header>
-        <div class="text-white text-center">
-            <h1>Data Summarization</h1>
+  <!-- ✅ Header -->
+  <header class="fixed top-0 w-full z-50 navbar-white shadow-md py-4 px-6 rounded-b-md">
+    <div class="flex justify-between items-center max-w-7xl mx-auto">
+      <div class="text-xl font-bold">🧠 SummarizeWise</div>
+      <nav class="space-x-6 text-sm font-medium">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('Summarize') }}">Summarize</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ✅ Main Section -->
+  <section class="flex flex-wrap mt-28 px-4 md:px-16 max-w-7xl mx-auto">
+
+    <!-- ✅ Input Panel -->
+    <div class="w-full md:w-1/2 p-4">
+      <div class="glass p-6 h-full">
+        <form action="{{ url_for('Summarize') }}" method="post" class="flex flex-col h-full">
+          <label for="data" class="font-semibold mb-2">Enter your text</label>
+          <textarea
+            class="w-full h-64 md:h-80 p-4 rounded-lg bg-gray-800 text-white border border-gray-600 resize-none"
+            name="data" id="data" placeholder="Paste or write your content here..." required></textarea>
+
+          <div class="mt-4">
+            <label for="maxL" class="text-sm font-medium">Summary Length: <span id="lengthVal">510</span> chars</label>
+            <input type="range" min="20" max="1000" name="maxL" id="maxL"
+              class="w-full mt-1" value="510" oninput="document.getElementById('lengthVal').textContent = this.value">
+          </div>
+
+          <div class="flex justify-center mt-6 space-x-4">
+            <button type="submit"
+              class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg transition">Submit</button>
+            <button type="reset"
+              class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-lg transition">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ✅ Output Panel -->
+    <div class="w-full md:w-1/2 p-4 mt-8 md:mt-0">
+      <div class="glass p-6 h-full">
+        <label for="result" class="font-semibold mb-2">Generated Summary</label>
+        <textarea
+          class="w-full h-64 md:h-80 p-4 rounded-lg bg-gray-800 text-white border border-green-600 resize-none"
+          name="result" id="result" readonly placeholder="Your summary will appear here...">{{ result }}</textarea>
+
+        <div class="mt-4 flex justify-center">
+          <button onclick="copyToClipboard()"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg transition">Copy Text</button>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <section>
-        <div class="form-container">
-            <div class="form-section">
-                <h3>Enter Your Data</h3>
-                <form action="{{url_for('Summarize')}}" method="post">
-                    <textarea name="data" id="data" rows="10" placeholder="Enter your Data"
-                        class="w-full p-2 rounded-lg bg-gray-800 text-white border border-gray-600 mb-2"
-                        required></textarea>
-                    <div class="flex items-center">
-                        <h3 class="text-white mr-2">Summary Length</h3>
-                        <input type="range" class="m-2" min="20" max="1000" name="maxL">
-                    </div>
-                    <div class="flex justify-center mt-2">
-                        <button class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg mr-2"
-                            type="submit" onclick="Check()">Summarize</button>
-                        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg"
-                            type="reset">Clear</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="result-container">
-            <div class="result-section">
-                <h3>Summary</h3>
-                <textarea id="result" rows="10" readonly
-                    class="w-full p-2 rounded-lg bg-gray-800 text-white border border-green-600 mb-2"
-                    placeholder="Your Summary">{{result}}</textarea>
-                <button class="bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg self-center"
-                    onclick="myFunction()">Copy Text</button>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        function myFunction() {
-            var copyText = document.getElementById("result");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-            document.execCommand("copy");
-            alert("Copied the text: " + copyText.value);
-        }
-
-        function Check() {
-            var reg = /<(.|\n)*>/g;
-
-            if (reg.test(document.getElementById("data").value)) {
-                alert('Make sure you provide valid data.');
-                event.preventDefault();
-            }
-        }
-    </script>
+  <!-- ✅ Script -->
+  <script>
+    function copyToClipboard() {
+      const result = document.getElementById("result");
+      result.select();
+      result.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(result.value).then(() => {
+        alert("Summary copied to clipboard!");
+      }).catch(() => {
+        alert("Failed to copy. Try manually selecting the text.");
+      });
+    }
+  </script>
 
 </body>
 
